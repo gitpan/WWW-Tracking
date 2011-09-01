@@ -1,0 +1,38 @@
+This file contains message digests of all files listed in MANIFEST,
+signed via the Module::Signature module, version 0.68.
+
+To verify the content in this distribution, first make sure you have
+Module::Signature installed, then type:
+
+    % cpansign -v
+
+It will check each file's integrity, as well as the signature's
+validity.  If "==> Signature verified OK! <==" is not displayed,
+the distribution may already have been compromised, and you should
+not run its Makefile.PL or Build.PL.
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+SHA1 6cef2daccad8d93f8155f6f635c0412472e74b87 Build.PL
+SHA1 5b5197b7a6dfc73dba390f906b04d6b832c0ffd2 Changes
+SHA1 318e3d22a1c8ef5d80a50201202817363d0798ea MANIFEST
+SHA1 161c03a0976c08b4734d60609c12f895d08d3f7b META.json
+SHA1 efe1137dbb04f0b02678d5143009135d78d9caa8 META.yml
+SHA1 1f161c31f0f4c071ba676028e975bd4dacec9b02 README
+SHA1 4d9efbfd874eeffa38c2322be181321cb6eef777 lib/WWW/Tracking.pm
+SHA1 ff7f9e66a2789826883cb8c317079d655a24b319 lib/WWW/Tracking/Data.pm
+SHA1 a8f415d4b2c8e61bca6d57401adac00630344b8a lib/WWW/Tracking/Data/Plugin/Catalyst.pm
+SHA1 a72d0e11a9d314bc6a7e6568dece47c100a84656 lib/WWW/Tracking/Data/Plugin/GoogleAnalytics.pm
+SHA1 2ed90620d2f6f582a7e7dd617356179c33d2a69e lib/WWW/Tracking/Data/Plugin/Headers.pm
+SHA1 63693202ad260808c66432b4ceca0845e57e913c t/01_WWW-Tracking.t
+SHA1 530dc3e895c88d3bcac96e932bac842f4e55b761 t/02_WWW-Tracking-Data.t
+SHA1 c7ec9af68f7e849f80cea8906a940587d9ee42a0 t/03_WWW-Tracking-Data-Plugin-Headers.t
+SHA1 0ddcceb118d47fc86aec17c1eb0078ea43d53494 t/04_WWW-Tracking-Data-Plugin-GoogleAnalytics.t
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+
+iEYEARECAAYFAk5f82UACgkQC0OgUPgL2ScowACfUjsHXOkbKm5BAlIiR2rwd3EN
+32cAnR4uqGKFCbKgTvcGMlSGMeYzG1uE
+=MV1u
+-----END PGP SIGNATURE-----
