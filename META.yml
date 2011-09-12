@@ -22,18 +22,27 @@ name: WWW-Tracking
 provides:
   WWW::Tracking:
     file: lib/WWW/Tracking.pm
-    version: 0.01
+    version: 0.02
   WWW::Tracking::Data:
     file: lib/WWW/Tracking/Data.pm
-    version: 0.01
+    version: 0.02
   WWW::Tracking::Data::Plugin::Catalyst:
     file: lib/WWW/Tracking/Data/Plugin/Catalyst.pm
-    version: 0
+    version: 0.02
   WWW::Tracking::Data::Plugin::GoogleAnalytics:
+    file: lib/WWW/Tracking/Data/Plugin/GoogleAnalytics.pm
+    version: 0.02
+  WWW::Tracking::Data::Plugin::GoogleAnalytics::DataFilter:
     file: lib/WWW/Tracking/Data/Plugin/GoogleAnalytics.pm
     version: 0
   WWW::Tracking::Data::Plugin::Headers:
     file: lib/WWW/Tracking/Data/Plugin/Headers.pm
+    version: 0.02
+  WWW::Tracking::Data::Plugin::Piwik:
+    file: lib/WWW/Tracking/Data/Plugin/Piwik.pm
+    version: 0.02
+  WWW::Tracking::Data::Plugin::Piwik::DataFilter:
+    file: lib/WWW/Tracking/Data/Plugin/Piwik.pm
     version: 0
 requires:
   CGI::Cookie: 0
@@ -42,10 +51,11 @@ requires:
   Digest::MD5: 0
   HTTP::Headers: 0
   LWP::UserAgent: 0
+  Math::BaseCnv: 0
   Scalar::Util: 0
   URI::Escape: 0
 resources:
   bugtracker: http://github.com/jozef/WWW-Tracking/issues
   license: http://dev.perl.org/licenses/
   repository: http://github.com/jozef/WWW-Tracking
-version: 0.01
+version: 0.02

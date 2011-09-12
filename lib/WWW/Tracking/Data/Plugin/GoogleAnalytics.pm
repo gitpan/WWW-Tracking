@@ -1,10 +1,16 @@
 package WWW::Tracking::Data::Plugin::GoogleAnalytics;
 
+use strict;
+use warnings;
+
+our $VERSION = '0.02';
+
 use WWW::Tracking::Data;
 use URI::Escape 'uri_escape';
 use LWP::UserAgent;
 
 our $UTM_GIF_LOCATION = 'http://www.google-analytics.com/__utm.gif';
+our $GA_VERSION = '4.4sp';
 our @URL_PAIRS = (
 	'utmhn'  => 'hostname',              # Host Name, which is a URL-encoded string.
 	'utmp'   => 'request_uri',           # Page request of the current page. 
@@ -13,7 +19,7 @@ our @URL_PAIRS = (
 	'utmip'  => 'remote_ip',             #
 	'utmcs'  => 'encoding',              # Language encoding for the browser. Some browsers don't set this, in which case it is set to "-"
 	'utmul'  => 'browser_language',      # Browser language.
-	'utmje'  => 'java',                  # Indicates if browser is Java-enabled. 1 is true.
+	'utmje'  => 'java_version',          # Indicates if browser is Java-enabled. 1 is true.
 	'utmsc'  => 'screen_color_depth',    # Screen color depth
 	'utmsr'  => 'screen_resolution',     # Screen resolution
 	'utmfl'  => 'flash_version',         # Flash Version
@@ -23,33 +29,28 @@ sub _map2(&@){
     my $code = shift; 
     map $code->( shift, shift ), 0 .. $#_/2 
 }
-sub _grep2(&@){ 
-    my $code = shift; 
-    map{ 
-        my @pair = (shift,shift); 
-        $code->( @pair ) ? @pair : ()
-    } 0 .. $#_/2 
-}
 
 sub _utm_url {
 	my $class         = shift;
 	my $tracking_data = shift;
 	
-	my $tracker_account = $tracking_data->_tracking->tracker_account;
-	
+	my $ga_tracking_data = bless $tracking_data, 'WWW::Tracking::Data::Plugin::GoogleAnalytics::DataFilter';
+	my $tracker_account = $ga_tracking_data->_tracking->tracker_account;
+
 	return
 		$UTM_GIF_LOCATION
 		.'?'
+		.'utmwv='.$GA_VERSION
 		.'&utmac='.$tracker_account                    # Account String. Appears on all requests.
 		.'&utmn='.$class->_uniq_gif_id                 # Unique ID generated for each GIF request to prevent caching of the GIF image. 
-		.'&utmcc=__utma%3D999.999.999.999.999.1%3B'    # Cookie values. This request parameter sends all the cookies requested from the page.
+		.'&utmcc=__utma%3D999.'.substr($ga_tracking_data->visitor_id,0,16).'.999.999.999.1%3B'    # Cookie values. This request parameter sends all the cookies requested from the page.
 		.join(
 			'',
 			_map2 {
 				my $prop = $_[1];
-				'&'.$_[0].'='.uri_escape($tracking_data->$prop)
+				my $value = $ga_tracking_data->$prop;
+				(defined $value ? '&'.$_[0].'='.uri_escape($ga_tracking_data->$prop) : ())
 			}
-			_grep2 { defined $_[1] }
 			@URL_PAIRS
 		)
 	;
@@ -57,6 +58,39 @@ sub _utm_url {
 
 sub _uniq_gif_id {
 	return int(rand(0x7fffffff));
+}
+
+1;
+
+package WWW::Tracking::Data::Plugin::GoogleAnalytics::DataFilter;
+
+use base 'WWW::Tracking::Data';
+
+sub browser_language {
+	my $self = shift;
+	my $lang = $self->SUPER::browser_language(@_);
+	
+	return unless $lang;
+	$lang =~ s/^( [a-zA-Z\-]{2,5} ) .* $/$1/xms;    # return only first language that can be either two letter or "en-GB" format
+	return unless $lang;
+	return $lang;
+}
+
+sub remote_ip {
+	my $self = shift;
+	my $ip = $self->SUPER::remote_ip(@_);
+	
+	return unless $ip;
+	return unless $ip =~ m/^( (?: \d{1,3} [.] ){3} ) \d{1,3} $/xms;    # capture only first 3 numbers from ip
+	return $1.'0';
+}
+
+sub java_version {
+	my $self = shift;
+	my $java_version = $self->SUPER::java_version(@_);
+	
+	return unless defined $java_version;
+	return ($java_version ? 1 : 0);
 }
 
 1;
@@ -75,6 +109,7 @@ sub make_tracking_request_ga {
 	my $self = shift;
 	
 	my $ua = LWP::UserAgent->new;
+	$ua->default_header('Accept-Language' => $self->browser_language);
 	$ua->agent($self->user_agent);
 	my $ga_output = $ua->get($self->as_ga);
 

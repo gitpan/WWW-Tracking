@@ -3,7 +3,7 @@ package WWW::Tracking;
 use warnings;
 use strict;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use base 'Class::Accessor::Fast';
 
@@ -14,6 +14,7 @@ use WWW::Tracking::Data;
 __PACKAGE__->mk_accessors(qw{
 	tracker_account
 	tracker_type
+	tracker_url
 	data
 });
 

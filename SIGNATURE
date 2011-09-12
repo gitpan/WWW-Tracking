@@ -14,25 +14,31 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 6cef2daccad8d93f8155f6f635c0412472e74b87 Build.PL
-SHA1 5b5197b7a6dfc73dba390f906b04d6b832c0ffd2 Changes
-SHA1 318e3d22a1c8ef5d80a50201202817363d0798ea MANIFEST
-SHA1 161c03a0976c08b4734d60609c12f895d08d3f7b META.json
-SHA1 efe1137dbb04f0b02678d5143009135d78d9caa8 META.yml
+SHA1 2484b45b0e2f83794dc81ffa6911795379408e36 Build.PL
+SHA1 7d1344588b681eed4509dbd5a0421a1f8904f210 Changes
+SHA1 090e6011a0ebcfbf5844091c7e76b4fb152f4ce9 MANIFEST
+SHA1 a2d6e1ce369ea9a6307d5a3277903a964a1a0a54 META.json
+SHA1 05e714be6af7dda073405d4279287a825ffd3327 META.yml
 SHA1 1f161c31f0f4c071ba676028e975bd4dacec9b02 README
-SHA1 4d9efbfd874eeffa38c2322be181321cb6eef777 lib/WWW/Tracking.pm
-SHA1 ff7f9e66a2789826883cb8c317079d655a24b319 lib/WWW/Tracking/Data.pm
-SHA1 a8f415d4b2c8e61bca6d57401adac00630344b8a lib/WWW/Tracking/Data/Plugin/Catalyst.pm
-SHA1 a72d0e11a9d314bc6a7e6568dece47c100a84656 lib/WWW/Tracking/Data/Plugin/GoogleAnalytics.pm
-SHA1 2ed90620d2f6f582a7e7dd617356179c33d2a69e lib/WWW/Tracking/Data/Plugin/Headers.pm
+SHA1 f89ec8bd383627e5158ef95dc7239cdc5981f42e lib/WWW/Tracking.pm
+SHA1 e787b0633b312c1030fa3c5ba69a5adf30f64234 lib/WWW/Tracking/Data.pm
+SHA1 200aa1ebffaccaf5d8a38344def3a21c9748e612 lib/WWW/Tracking/Data/Plugin/Catalyst.pm
+SHA1 273f803387ad3e1672adaf4f4e769b57806d2cde lib/WWW/Tracking/Data/Plugin/GoogleAnalytics.pm
+SHA1 03fdf7c0ebfe243657ca2fd6a263576a380d818f lib/WWW/Tracking/Data/Plugin/Headers.pm
+SHA1 b6fcc2b007c6d108cf8630b063a781f0df657466 lib/WWW/Tracking/Data/Plugin/Piwik.pm
 SHA1 63693202ad260808c66432b4ceca0845e57e913c t/01_WWW-Tracking.t
-SHA1 530dc3e895c88d3bcac96e932bac842f4e55b761 t/02_WWW-Tracking-Data.t
+SHA1 85cc928663a668648eb7d5ed819ff3c1b2e454d5 t/02_WWW-Tracking-Data.t
 SHA1 c7ec9af68f7e849f80cea8906a940587d9ee42a0 t/03_WWW-Tracking-Data-Plugin-Headers.t
-SHA1 0ddcceb118d47fc86aec17c1eb0078ea43d53494 t/04_WWW-Tracking-Data-Plugin-GoogleAnalytics.t
+SHA1 b57e203e224da2b58344bf1ba3cad48fa9d4b7e3 t/04_WWW-Tracking-Data-Plugin-GoogleAnalytics.t
+SHA1 4db4d779164ca308bb6284f0edef6325d4d41e64 t/05_WWW-Tracking-Data-Plugin-Piwik.t
+SHA1 41533fbd463e42d2ecf1e119eca910c16809d13e t/distribution.t
+SHA1 0b1c5a2d59be6bfa7d60c64cd964fea6a0331705 t/pod-coverage.t
+SHA1 14f9c29e24da2e7cbd50bb884091591d22ff74df t/pod-spell.t
+SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEARECAAYFAk5f82UACgkQC0OgUPgL2ScowACfUjsHXOkbKm5BAlIiR2rwd3EN
-32cAnR4uqGKFCbKgTvcGMlSGMeYzG1uE
-=MV1u
+iEYEARECAAYFAk5tytEACgkQC0OgUPgL2Sc0TQCfU3Qcn4CUvWXOHco3+/+hSKKx
+1wIAn17IJFuAvS7cRtIbVU0pLLQFF1FX
+=yt01
 -----END PGP SIGNATURE-----
